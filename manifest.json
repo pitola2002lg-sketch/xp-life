@@ -2,9 +2,8 @@
   "name": "XP Life - RPG de Disciplina",
   "short_name": "XP Life",
   "description": "Transforme sua vida em um RPG! Complete tarefas, ganhe XP, suba de nível e conquiste seus objetivos.",
- "start_url": "/xp-life/",
-"scope": "/xp-life/"
-
+ "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#1a1a2e",
   "theme_color": "#667eea",
