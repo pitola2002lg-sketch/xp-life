@@ -2,28 +2,26 @@
   "name": "XP Life - RPG de Disciplina",
   "short_name": "XP Life",
   "description": "Transforme sua vida em um RPG! Complete tarefas, ganhe XP, suba de nível e conquiste seus objetivos.",
- "start_url": "./index.html",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#1a1a2e",
   "theme_color": "#667eea",
   "orientation": "portrait",
-  "scope": "/",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "./icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png",
+      "src": "./icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
   "categories": ["lifestyle", "health", "productivity"],
-  "screenshots": [],
   "prefer_related_applications": false
 }
