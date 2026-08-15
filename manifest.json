@@ -1,13 +1,19 @@
 {
-  "name": "XP Life - RPG de Disciplina",
+  "id": "./",
+  "name": "XP Life 2.0 - RPG de Vida",
   "short_name": "XP Life",
-  "description": "Transforme sua vida em um RPG! Complete tarefas, ganhe XP, suba de nível e conquiste seus objetivos.",
+  "description": "Transforme sua rotina em um RPG: tarefas, treinos, hidratação, desafios, XP e conquistas.",
+  "lang": "pt-BR",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui"
+  ],
   "background_color": "#1a1a2e",
   "theme_color": "#667eea",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "./icon-192.png",
@@ -22,6 +28,34 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["lifestyle", "health", "productivity"],
+  "categories": [
+    "lifestyle",
+    "health",
+    "productivity"
+  ],
+  "shortcuts": [
+    {
+      "name": "Tarefas",
+      "short_name": "Tarefas",
+      "url": "./index.html#tasks",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Hidratação",
+      "short_name": "Água",
+      "url": "./index.html#water",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
   "prefer_related_applications": false
 }

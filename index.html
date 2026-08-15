@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-192.png">
 
 
 <meta charset="UTF-8">
@@ -13,7 +14,7 @@
 <meta name="theme-color" content="#667eea">
 <meta name="description" content="Transforme sua vida em um RPG! Complete tarefas, ganhe XP, suba de nível e conquiste seus objetivos.">
 
-<title>XP Life - Desafios & Treinos</title>
+<title>XP Life 2.0 - RPG de Vida</title>
 
 <style>
 * {
@@ -909,6 +910,72 @@ button.daily-challenge-btn {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+
+/* ========================================
+   PWA / INSTALAÇÃO / CONFIGURAÇÕES
+======================================== */
+.pwa-card {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  padding: 16px;
+  margin: 12px 0;
+}
+.pwa-card p { line-height: 1.5; opacity: .86; margin: 8px 0 12px; }
+.setting-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.setting-row:last-child { border-bottom: 0; }
+.setting-row label { font-weight: 650; }
+.setting-row small { display: block; opacity: .7; margin-top: 4px; line-height: 1.35; }
+.setting-select {
+  width: auto;
+  min-width: 120px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 10px;
+  background: rgba(15,15,28,.9);
+  color: #fff;
+  font-size: 15px;
+}
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.09);
+  font-size: 13px;
+  margin: 4px 0 8px;
+}
+#installAppBtn { background: linear-gradient(135deg, #10b981, #059669); }
+#notificationPermissionBtn { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+@media (min-width: 900px) {
+  #game { max-width: 680px; padding: 36px; }
+  body { padding: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ===== XP LIFE 2.0 ===== */
+.dashboard-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}.dash-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:12px;text-align:left}.dash-card strong{display:block;font-size:12px;opacity:.75;margin-bottom:5px}.dash-card span{font-size:18px;font-weight:800}.rpg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.rpg-attr{background:rgba(255,255,255,.08);padding:12px;border-radius:12px}.mini-bar{height:8px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;margin-top:7px}.mini-bar>i{display:block;height:100%;background:linear-gradient(90deg,#667eea,#f093fb);border-radius:99px}.form-card{background:rgba(255,255,255,.08);padding:14px;border-radius:14px;margin:12px 0}.form-card input,.form-card select{width:100%;box-sizing:border-box;margin:5px 0 10px;padding:11px;border-radius:9px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.2);color:white}.weekday-row{display:flex;gap:5px;flex-wrap:wrap}.weekday-row label{font-size:12px;background:rgba(255,255,255,.08);padding:7px;border-radius:8px}.mission-card{background:rgba(255,255,255,.08);border-radius:13px;padding:13px;margin:10px 0}.mission-head{display:flex;justify-content:space-between;gap:10px}.stats-bars{display:flex;align-items:flex-end;gap:7px;height:160px;margin:16px 0 8px}.stats-col{flex:1;text-align:center;font-size:10px}.stats-col .bar{min-height:2px;background:linear-gradient(180deg,#f093fb,#667eea);border-radius:8px 8px 2px 2px}.stats-col b{display:block;margin-top:5px}.avatar-title{font-size:13px;opacity:.8;margin-top:4px}.small-note{font-size:12px;opacity:.7;line-height:1.4}.danger-btn{background:linear-gradient(135deg,#ff6b6b,#ee5253)!important}.success-btn{background:linear-gradient(135deg,#1dd1a1,#10ac84)!important}
+@media(min-width:800px){.dashboard-grid{grid-template-columns:repeat(4,1fr)}.rpg-grid{grid-template-columns:repeat(3,1fr)}}
+
 </style>
 </head>
 <body>
@@ -936,12 +1003,19 @@ button.daily-challenge-btn {
     
     <div id="playerContainer">
       <div id="player">🧑</div>
-      <div class="level-badge" id="levelBadge">Level 1</div>
+      <div class="level-badge" id="levelBadge">Level 1</div><div class="avatar-title" id="avatarTitle">Iniciante</div>
     </div>
 
     <div id="xpProgress">
       <div id="xpBar" style="width: 0%"></div>
       <div id="xpText">0 / 100 XP</div>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="dash-card"><strong>💧 Água</strong><span id="dashWater">0 / 2400 ml</span></div>
+      <div class="dash-card"><strong>🪙 Life Coins</strong><span id="dashCoins">0</span></div>
+      <div class="dash-card"><strong>⚔️ Poder RPG</strong><span id="dashPower">0</span></div>
+      <div class="dash-card"><strong>📈 XP Hoje</strong><span id="dashXPToday">0</span></div>
     </div>
 
     <div class="stats">
@@ -960,14 +1034,83 @@ button.daily-challenge-btn {
     </div>
 
     <button class="primary-btn" onclick="openScreen('tasks')">📋 Tarefas</button>
+    <button onclick="openScreen('rpgProgress')">⚔️ Progresso RPG</button>
+    <button onclick="openScreen('weeklyMissions')">🗓️ Missões Semanais</button>
+    <button onclick="openScreen('statistics')">📈 Estatísticas</button>
     <button class="daily-challenge-btn" onclick="openScreen('dailyChallenge')">🎲 Desafio Diário</button>
     <button onclick="openScreen('workouts')">💪 Treinos</button>
     <button onclick="openScreen('water')">💧 Hidratação</button>
     <button onclick="openScreen('achievements')">🏆 Conquistas</button>
     <button onclick="openScreen('ranking')">📊 Ranking</button>
     <button onclick="openScreen('history')">📅 Histórico</button>
+    <button onclick="openScreen('appSettings')">⚙️ App & Notificações</button>
+    <button id="installAppBtn" onclick="installApp()" hidden>📲 Instalar XP Life</button>
     <button id="soundToggle" onclick="toggleSound()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">🔊 Som: ON</button>
     <button class="back-btn" onclick="resetProgress()">🔄 Resetar Progresso</button>
+  </div>
+
+  <!-- APP & NOTIFICAÇÕES -->
+  <div id="appSettings" class="screen hidden">
+    <button class="back-btn" onclick="openScreen('menu')">← Voltar</button>
+    <h2>⚙️ App & Notificações</h2>
+
+    <div class="pwa-card">
+      <strong>📲 Instalação</strong>
+      <div id="installStatus" class="status-pill">Verificando...</div>
+      <p>Instale o XP Life como aplicativo para abrir em tela própria e ter uma experiência mais parecida com app nativo.</p>
+      <button id="settingsInstallBtn" onclick="installApp()">📲 Instalar XP Life</button>
+    </div>
+
+    <div class="pwa-card">
+      <strong>🔔 Notificações</strong>
+      <div id="notificationStatus" class="status-pill">Verificando...</div>
+      <p>Ative as notificações para receber lembretes enquanto o navegador/PWA permite execução em segundo plano.</p>
+      <button id="notificationPermissionBtn" onclick="requestNotificationPermission()">🔔 Ativar notificações</button>
+      <button onclick="sendTestNotification()">🧪 Testar notificação</button>
+    </div>
+
+    <div class="pwa-card">
+      <div class="setting-row">
+        <div>
+          <label for="waterReminderSelect">💧 Lembrete de água</label>
+          <small>Intervalo entre lembretes quando a meta diária ainda não foi atingida.</small>
+        </div>
+        <select id="waterReminderSelect" class="setting-select" onchange="updateReminderSettings()">
+          <option value="0">Desligado</option>
+          <option value="30">30 min</option>
+          <option value="60">1 hora</option>
+          <option value="90">1h30</option>
+          <option value="120">2 horas</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <div>
+          <label for="dailyReminderSelect">🎯 Lembrete diário</label>
+          <small>Lembra de abrir o XP Life e manter sua sequência.</small>
+        </div>
+        <select id="dailyReminderSelect" class="setting-select" onchange="updateReminderSettings()">
+          <option value="0">Desligado</option>
+          <option value="8">08:00</option>
+          <option value="9">09:00</option>
+          <option value="12">12:00</option>
+          <option value="18">18:00</option>
+          <option value="20">20:00</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="pwa-card">
+      <strong>💾 Backup do progresso</strong>
+      <p>Exporte seus dados para guardar uma cópia ou transferir o progresso para outro aparelho.</p>
+      <button onclick="exportBackup()">⬇️ Exportar backup</button>
+      <input id="backupFile" type="file" accept="application/json" style="display:none" onchange="importBackup(event)">
+      <button onclick="document.getElementById('backupFile').click()">⬆️ Importar backup</button>
+    </div>
+
+    <div class="pwa-card">
+      <strong>🌐 Offline</strong>
+      <p id="offlineStatus">O app salva o progresso no aparelho e prepara os arquivos principais para funcionar sem internet após a primeira abertura.</p>
+    </div>
   </div>
 
   <!-- TAREFAS -->
@@ -975,6 +1118,16 @@ button.daily-challenge-btn {
     <button class="back-btn" onclick="openScreen('menu')">← Voltar</button>
     <h2>📋 Tarefas Diárias</h2>
     
+    <div class="form-card">
+      <h3>➕ Criar hábito/tarefa</h3>
+      <input id="customTaskName" maxlength="60" placeholder="Ex.: Estudar inglês">
+      <select id="customTaskCategory"><option>Personalizado</option><option>Estudo/Trabalho</option><option>Saúde</option><option>Autocuidado</option><option>Casa</option></select>
+      <input id="customTaskXP" type="number" min="5" max="100" value="20" placeholder="XP">
+      <div class="weekday-row" id="customTaskDays">
+        <label><input type="checkbox" value="0" checked> Dom</label><label><input type="checkbox" value="1" checked> Seg</label><label><input type="checkbox" value="2" checked> Ter</label><label><input type="checkbox" value="3" checked> Qua</label><label><input type="checkbox" value="4" checked> Qui</label><label><input type="checkbox" value="5" checked> Sex</label><label><input type="checkbox" value="6" checked> Sáb</label>
+      </div>
+      <button class="success-btn" onclick="addCustomTask()">＋ Adicionar tarefa</button>
+    </div>
     <div id="tasksList"></div>
   </div>
 
@@ -1265,6 +1418,24 @@ button.daily-challenge-btn {
   </div>
 
   <!-- HISTÓRICO -->
+
+  <div id="rpgProgress" class="screen hidden">
+    <button class="back-btn" onclick="openScreen('menu')">← Voltar</button><h2>⚔️ Progresso RPG</h2>
+    <div class="stats"><div class="stat-row"><strong>🪙 Life Coins</strong><span id="coinsDisplay">0</span></div><div class="stat-row"><strong>🏷️ Título</strong><span id="titleDisplay">Iniciante</span></div></div>
+    <div id="attributesGrid" class="rpg-grid"></div>
+    <div class="form-card"><h3>🎁 Recompensas pessoais</h3><input id="rewardName" placeholder="Ex.: Noite de filme"><input id="rewardCost" type="number" min="10" value="100" placeholder="Custo em moedas"><button onclick="addPersonalReward()">＋ Criar recompensa</button><div id="rewardsList"></div></div>
+  </div>
+
+  <div id="weeklyMissions" class="screen hidden">
+    <button class="back-btn" onclick="openScreen('menu')">← Voltar</button><h2>🗓️ Missões Semanais</h2><p class="small-note">Reiniciam a cada semana. As recompensas só podem ser coletadas uma vez.</p><div id="weeklyMissionList"></div>
+  </div>
+
+  <div id="statistics" class="screen hidden">
+    <button class="back-btn" onclick="openScreen('menu')">← Voltar</button><h2>📈 Estatísticas</h2>
+    <div class="stats"><div class="stat-row"><strong>✅ Taxa de conclusão</strong><span id="completionRate">0%</span></div><div class="stat-row"><strong>⭐ Melhor dia</strong><span id="bestDayStat">—</span></div><div class="stat-row"><strong>🔥 Melhor sequência</strong><span id="bestStreakStat">0 dias</span></div></div>
+    <h3>XP dos últimos 7 dias</h3><div id="xpWeekChart" class="stats-bars"></div>
+  </div>
+
   <div id="history" class="screen hidden">
     <button class="back-btn" onclick="openScreen('menu')">← Voltar</button>
     <h2>📅 Últimos 30 Dias</h2>
@@ -1309,6 +1480,16 @@ let player = {
   waterDaysCompleted: 0,
   waterTotalDrunk: 0,
   waterHistory: [],
+  xpToday: 0,
+  playedDates: [],
+  taskStreakMeta: {},
+  coins: 0,
+  attributes: { strength: 0, intelligence: 0, health: 0, discipline: 0, balance: 0, consistency: 0 },
+  customTasks: [],
+  personalRewards: [],
+  workoutHistory: [],
+  waterAddsToday: [],
+  weeklyClaims: {},
   history: []
 };
 
@@ -1653,6 +1834,222 @@ function showNotification(message, type = 'default') {
   }, 3000);
 }
 
+
+// ======================
+// PWA, INSTALAÇÃO E NOTIFICAÇÕES DO SISTEMA
+// ======================
+let deferredInstallPrompt = null;
+let reminderTimer = null;
+
+function isStandaloneMode() {
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
+function getReminderSettings() {
+  let raw = {};
+  try { raw = JSON.parse(localStorage.getItem('xpLifeReminderSettings') || '{}'); } catch (_) {}
+  return {
+    waterMinutes: Number(raw.waterMinutes || 0),
+    dailyHour: Number(raw.dailyHour || 0),
+    lastWaterReminder: Number(raw.lastWaterReminder || 0),
+    lastDailyReminderDate: raw.lastDailyReminderDate || ''
+  };
+}
+
+function saveReminderSettings(settings) {
+  localStorage.setItem('xpLifeReminderSettings', JSON.stringify(settings));
+}
+
+function updateReminderSettings() {
+  const settings = getReminderSettings();
+  const water = document.getElementById('waterReminderSelect');
+  const daily = document.getElementById('dailyReminderSelect');
+  if (water) settings.waterMinutes = Number(water.value);
+  if (daily) settings.dailyHour = Number(daily.value);
+  settings.lastWaterReminder = Date.now();
+  saveReminderSettings(settings);
+  updateAppSettingsUI();
+  startReminderEngine();
+  showNotification('⚙️ Lembretes atualizados!', 'success');
+}
+
+async function showSystemNotification(title, options = {}) {
+  if (!('Notification' in window) || Notification.permission !== 'granted') return false;
+  const data = { url: './index.html', ...(options.data || {}) };
+  try {
+    if ('serviceWorker' in navigator) {
+      const reg = await navigator.serviceWorker.ready;
+      await reg.showNotification(title, {
+        icon: './icon-192.png',
+        badge: './icon-192.png',
+        tag: options.tag || 'xp-life',
+        renotify: false,
+        ...options,
+        data
+      });
+    } else {
+      new Notification(title, { ...options, data });
+    }
+    return true;
+  } catch (err) {
+    console.warn('Falha ao mostrar notificação:', err);
+    return false;
+  }
+}
+
+async function requestNotificationPermission() {
+  if (!('Notification' in window)) {
+    showNotification('❌ Este navegador não suporta notificações.', 'error');
+    return;
+  }
+  try {
+    const permission = await Notification.requestPermission();
+    updateAppSettingsUI();
+    if (permission === 'granted') {
+      showNotification('🔔 Notificações ativadas!', 'success');
+      await showSystemNotification('XP Life ativado! 🎮', {
+        body: 'Seus lembretes estão prontos. Continue ganhando XP!',
+        tag: 'xp-life-welcome'
+      });
+      startReminderEngine();
+    } else if (permission === 'denied') {
+      showNotification('🔕 Permissão negada. Você pode reativar nas configurações do navegador.', 'warning');
+    }
+  } catch (err) {
+    console.warn(err);
+    showNotification('❌ Não foi possível ativar notificações.', 'error');
+  }
+}
+
+async function sendTestNotification() {
+  if (!('Notification' in window) || Notification.permission !== 'granted') {
+    await requestNotificationPermission();
+    if (!('Notification' in window) || Notification.permission !== 'granted') return;
+  }
+  const ok = await showSystemNotification('XP Life • Teste 🔔', {
+    body: 'Funcionou! As notificações do XP Life estão ativas.',
+    tag: 'xp-life-test'
+  });
+  if (ok) showNotification('✅ Notificação de teste enviada!', 'success');
+}
+
+function checkReminders() {
+  if (!('Notification' in window) || Notification.permission !== 'granted') return;
+  if (document.visibilityState !== 'visible' && !isStandaloneMode()) return;
+
+  const settings = getReminderSettings();
+  const now = new Date();
+
+  if (settings.waterMinutes > 0 && player && player.waterToday < player.waterGoal) {
+    const elapsed = Date.now() - settings.lastWaterReminder;
+    if (elapsed >= settings.waterMinutes * 60 * 1000) {
+      const remaining = Math.max(0, player.waterGoal - player.waterToday);
+      showSystemNotification('Hora de beber água 💧', {
+        body: `Faltam ${remaining} ml para sua meta de hoje.`,
+        tag: 'xp-life-water'
+      });
+      settings.lastWaterReminder = Date.now();
+    }
+  }
+
+  if (settings.dailyHour > 0 && now.getHours() >= settings.dailyHour) {
+    const dateKey = `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
+    if (settings.lastDailyReminderDate !== dateKey && player && player.tasksToday === 0) {
+      showSystemNotification('Seu XP de hoje está esperando 🎯', {
+        body: 'Complete uma tarefa e mantenha sua sequência viva.',
+        tag: 'xp-life-daily'
+      });
+      settings.lastDailyReminderDate = dateKey;
+    }
+  }
+  saveReminderSettings(settings);
+}
+
+function startReminderEngine() {
+  if (reminderTimer) clearInterval(reminderTimer);
+  checkReminders();
+  reminderTimer = setInterval(checkReminders, 60 * 1000);
+}
+
+function updateAppSettingsUI() {
+  const installStatus = document.getElementById('installStatus');
+  const installBtn = document.getElementById('settingsInstallBtn');
+  const menuInstallBtn = document.getElementById('installAppBtn');
+  const notifStatus = document.getElementById('notificationStatus');
+  const notifBtn = document.getElementById('notificationPermissionBtn');
+  const water = document.getElementById('waterReminderSelect');
+  const daily = document.getElementById('dailyReminderSelect');
+  const offline = document.getElementById('offlineStatus');
+  const settings = getReminderSettings();
+
+  if (water) water.value = String(settings.waterMinutes);
+  if (daily) daily.value = String(settings.dailyHour);
+
+  if (isStandaloneMode()) {
+    if (installStatus) installStatus.textContent = '✅ XP Life já está instalado';
+    if (installBtn) installBtn.hidden = true;
+    if (menuInstallBtn) menuInstallBtn.hidden = true;
+  } else {
+    if (installStatus) installStatus.textContent = deferredInstallPrompt ? '📲 Pronto para instalar' : '🌐 Aberto no navegador';
+    if (installBtn) installBtn.hidden = false;
+    if (menuInstallBtn) menuInstallBtn.hidden = !deferredInstallPrompt;
+  }
+
+  if (!('Notification' in window)) {
+    if (notifStatus) notifStatus.textContent = '❌ Não suportado neste navegador';
+    if (notifBtn) notifBtn.disabled = true;
+  } else {
+    const labels = { granted: '✅ Permitidas', denied: '⛔ Bloqueadas', default: '⚪ Ainda não ativadas' };
+    if (notifStatus) notifStatus.textContent = labels[Notification.permission] || Notification.permission;
+    if (notifBtn) {
+      notifBtn.disabled = Notification.permission === 'denied';
+      notifBtn.textContent = Notification.permission === 'granted' ? '✅ Notificações ativadas' : '🔔 Ativar notificações';
+    }
+  }
+
+  if (offline) offline.textContent = navigator.onLine
+    ? '✅ Online agora. O XP Life mantém os arquivos essenciais em cache para uso offline.'
+    : '📴 Você está offline. O XP Life continua usando os arquivos salvos no aparelho.';
+}
+
+async function installApp() {
+  if (isStandaloneMode()) {
+    showNotification('✅ O XP Life já está instalado!', 'success');
+    return;
+  }
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    const choice = await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    updateAppSettingsUI();
+    if (choice.outcome === 'accepted') showNotification('📲 Instalação iniciada!', 'success');
+    return;
+  }
+  const isiOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  if (isiOS) {
+    showNotification('📲 No iPhone/iPad: Compartilhar → Adicionar à Tela de Início.', 'warning');
+  } else {
+    showNotification('📲 Use o menu do navegador → Instalar app / Adicionar à tela inicial.', 'warning');
+  }
+}
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  updateAppSettingsUI();
+});
+window.addEventListener('appinstalled', () => {
+  deferredInstallPrompt = null;
+  updateAppSettingsUI();
+  showNotification('🎉 XP Life instalado com sucesso!', 'success');
+});
+window.addEventListener('online', updateAppSettingsUI);
+window.addEventListener('offline', updateAppSettingsUI);
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') checkReminders();
+});
+
+
 // ======================
 // PARTÍCULAS DE FUNDO
 // ======================
@@ -1676,7 +2073,7 @@ function openScreen(screen) {
   // Vibração ao navegar
   vibrate(VIBRATE_PATTERNS.light);
   
-  const screens = ['setup', 'menu', 'tasks', 'achievements', 'ranking', 'history', 'dailyChallenge', 'workouts', 'water'];
+  const screens = ['setup', 'menu', 'tasks', 'achievements', 'ranking', 'history', 'dailyChallenge', 'workouts', 'water', 'appSettings', 'rpgProgress', 'weeklyMissions', 'statistics'];
   
   // Fade out da tela atual
   if (currentScreen) {
@@ -1712,11 +2109,28 @@ function openScreen(screen) {
     if (screen === 'achievements') renderAchievements();
     if (screen === 'ranking') renderRanking();
     if (screen === 'history') renderHistory();
+    if (screen === 'rpgProgress') renderRPGProgress();
+    if (screen === 'weeklyMissions') renderWeeklyMissions();
+    if (screen === 'statistics') renderStatistics();
     if (screen === 'dailyChallenge') renderDailyChallenge();
     if (screen === 'workouts') renderWorkoutTracker();
     if (screen === 'water') updateWaterUI();
+    if (screen === 'appSettings') updateAppSettingsUI();
   }, currentScreen ? 300 : 0);
 }
+
+// ======================
+// UTILITÁRIOS XP LIFE 2.0
+// ======================
+function localDateKey(date = new Date()) { const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,'0'),d=String(date.getDate()).padStart(2,'0'); return `${y}-${m}-${d}`; }
+function daysBetweenKeys(a,b){ if(!a||!b)return 999; const A=new Date(a+'T12:00:00'),B=new Date(b+'T12:00:00'); return Math.round((B-A)/86400000); }
+function getAvatarTitle(){ const l=player.level; return l>=30?'Lenda':l>=20?'Mestre':l>=15?'Elite':l>=10?'Veterano':l>=6?'Guerreiro':l>=3?'Aprendiz':'Iniciante'; }
+function totalAttributePower(){ return Object.values(player.attributes||{}).reduce((a,b)=>a+(Number(b)||0),0); }
+function gainAttribute(key, amount=1){ if(!player.attributes) player.attributes={strength:0,intelligence:0,health:0,discipline:0,balance:0,consistency:0}; player.attributes[key]=(player.attributes[key]||0)+amount; }
+function attributeForCategory(category,id=''){ if(id==='exercicio'||id==='caminhada')return 'strength'; if(id==='leitura'||String(category).includes('Estudo'))return 'intelligence'; if(String(category).includes('Saúde')||id==='agua')return 'health'; if(id==='meditacao'||String(category).includes('Autocuidado'))return 'balance'; return 'discipline'; }
+function awardCoins(amount){ player.coins=(player.coins||0)+Math.max(0,Math.floor(amount)); }
+function visibleTasks(){ const dow=new Date().getDay(); return tasksList.concat(player.customTasks||[]).filter(t=>!t.days||t.days.includes(dow)); }
+function currentWeekKey(){ const d=new Date(); const day=(d.getDay()+6)%7; const monday=new Date(d); monday.setDate(d.getDate()-day); return localDateKey(monday); }
 
 // ======================
 // SISTEMA DE XP E NÍVEL
@@ -1728,6 +2142,7 @@ function getXPForLevel(level) {
 function addXP(amount) {
   player.xp += amount;
   player.totalXP += amount;
+  player.xpToday = (player.xpToday || 0) + amount;
   
   const xpNeeded = getXPForLevel(player.level);
   
@@ -1811,6 +2226,11 @@ function updateUI() {
   if (currentStreakEl) currentStreakEl.innerText = `${player.currentStreak} dias`;
   if (totalXPEl) totalXPEl.innerText = player.totalXP;
   if (tasksTodayEl) tasksTodayEl.innerText = player.tasksToday;
+  const dashWater=document.getElementById('dashWater'); if(dashWater) dashWater.innerText=`${player.waterToday||0} / ${player.waterGoal||2400} ml`;
+  const dashCoins=document.getElementById('dashCoins'); if(dashCoins) dashCoins.innerText=player.coins||0;
+  const dashPower=document.getElementById('dashPower'); if(dashPower) dashPower.innerText=totalAttributePower();
+  const dashXP=document.getElementById('dashXPToday'); if(dashXP) dashXP.innerText=player.xpToday||0;
+  const avatarTitle=document.getElementById('avatarTitle'); if(avatarTitle) avatarTitle.innerText=getAvatarTitle();
   
   updatePlayerEmoji();
 }
@@ -1819,81 +2239,29 @@ function updateUI() {
 // RESET DIÁRIO
 // ======================
 function dailyReset() {
-  const today = new Date().toDateString();
-  
-  if (player.lastDate !== today) {
-    // Histórico do dia anterior
-    if (player.lastDate) {
-      const yesterday = new Date(player.lastDate);
-      const todayDate = new Date(today);
-      const diffDays = Math.floor((todayDate - yesterday) / (1000 * 60 * 60 * 24));
-      
-      if (diffDays === 1) {
-        if (player.tasksToday > 0) {
-          player.currentStreak++;
-          if (player.currentStreak > player.bestStreak) {
-            player.bestStreak = player.currentStreak;
-          }
-        } else {
-          player.currentStreak = 0;
-        }
-      } else if (diffDays > 1) {
-        player.currentStreak = 0;
-      }
-      
-      // Salvar histórico
-      const challengesCompleted = Array.isArray(player.dailyChallengesCompleted) 
-        ? player.dailyChallengesCompleted.filter(c => c).length 
-        : (player.dailyChallengeCompleted ? 1 : 0);
-      
-      player.history.push({
-        date: player.lastDate,
-        xp: player.totalXP,
-        tasks: player.tasksToday,
-        level: player.level,
-        challengesCompleted: challengesCompleted,
-        challengeCompleted: challengesCompleted > 0 // Compatibilidade
-      });
-      
-      if (player.history.length > 90) {
-        player.history.shift();
-      }
-      
-      // Hidratação
-      if (player.waterToday >= player.waterGoal) {
-        player.waterDaysCompleted++;
-        player.waterStreak++;
-        if (player.waterStreak > player.waterBestStreak) {
-          player.waterBestStreak = player.waterStreak;
-        }
-      } else {
-        player.waterStreak = 0;
-      }
-      
-      player.waterHistory.push({
-        date: player.lastDate,
-        amount: player.waterToday
-      });
-      
-      if (player.waterHistory.length > 30) {
-        player.waterHistory.shift();
-      }
-    } else {
-      // Primeiro dia jogando - inicializar streak
-      if (player.currentStreak === undefined) player.currentStreak = 0;
-      if (player.bestStreak === undefined) player.bestStreak = 0;
+  const todayKey = localDateKey();
+  const previousKey = player.lastDateKey || (player.lastDate ? localDateKey(new Date(player.lastDate)) : null);
+  if (previousKey !== todayKey) {
+    if (previousKey) {
+      const gap=daysBetweenKeys(previousKey,todayKey);
+      if ((player.tasksToday||0)>0) player.currentStreak = gap===1 ? (player.currentStreak||0)+1 : 1;
+      else player.currentStreak=0;
+      player.bestStreak=Math.max(player.bestStreak||0,player.currentStreak||0);
+      const challengesCompleted=Array.isArray(player.dailyChallengesCompleted)?player.dailyChallengesCompleted.filter(Boolean).length:0;
+      const hadWorkout=Object.values(player.workoutCompleted||{}).some(Boolean);
+      player.history.push({date:previousKey,xp:player.xpToday||0,tasks:player.tasksToday||0,level:player.level,challengesCompleted,challengeCompleted:challengesCompleted>0,water:player.waterToday||0,workout:hadWorkout});
+      player.history=player.history.slice(-180);
+      if((player.waterToday||0)>=(player.waterGoal||2400)){player.waterDaysCompleted=(player.waterDaysCompleted||0)+1;player.waterStreak=gap===1?(player.waterStreak||0)+1:1;player.waterBestStreak=Math.max(player.waterBestStreak||0,player.waterStreak);}else player.waterStreak=0;
+      player.waterHistory.push({date:previousKey,amount:player.waterToday||0}); player.waterHistory=player.waterHistory.slice(-90);
+      if(hadWorkout){player.workoutHistory=player.workoutHistory||[]; if(!player.workoutHistory.includes(previousKey))player.workoutHistory.push(previousKey); player.workoutHistory=player.workoutHistory.slice(-180);}
     }
-    
-    player.daysPlayed++;
-    player.lastDate = today;
-    player.tasksToday = 0;
-    player.completedToday = [];
-    player.workoutCompleted = {};
-    player.dailyChallengesCompleted = [false, false, false];
-    player.waterToday = 0;
-    
-    save();
+    player.lastDate=todayKey; player.lastDateKey=todayKey;
+    player.tasksToday=0; player.completedToday=[]; player.workoutCompleted={}; player.dailyChallengesCompleted=[false,false,false]; player.waterToday=0; player.waterAddsToday=[]; player.xpToday=0;
   }
+  player.playedDates=Array.isArray(player.playedDates)?player.playedDates:[];
+  if(!player.playedDates.includes(todayKey)) player.playedDates.push(todayKey);
+  player.daysPlayed=player.playedDates.length;
+  save();
 }
 
 // ======================
@@ -1987,9 +2355,18 @@ function completeTask(taskId, xp, taskName) {
   player.tasksToday++;
   player.totalTasks++;
   
-  // Streak da tarefa
-  if (!player.taskStreaks[taskId]) player.taskStreaks[taskId] = 0;
-  player.taskStreaks[taskId]++;
+  // Streak real: somente dias consecutivos
+  const todayKey = localDateKey();
+  if (!player.taskStreakMeta) player.taskStreakMeta = {};
+  const meta = player.taskStreakMeta[taskId] || { current: 0, best: 0, lastDate: null };
+  const gap = meta.lastDate ? daysBetweenKeys(meta.lastDate, todayKey) : 999;
+  meta.current = gap === 1 ? meta.current + 1 : 1;
+  meta.best = Math.max(meta.best || 0, meta.current);
+  meta.lastDate = todayKey;
+  player.taskStreakMeta[taskId] = meta;
+  player.taskStreaks[taskId] = meta.current;
+  gainAttribute(attributeForCategory((visibleTasks().find(t=>t.id===taskId)||{}).category, taskId), 1);
+  awardCoins(Math.max(1, Math.round(xp / 5)));
   
   // Histórico da tarefa
   if (!player.taskHistory[taskId]) player.taskHistory[taskId] = 0;
@@ -2022,7 +2399,7 @@ function renderTasks() {
   div.innerHTML = "";
   
   const categories = {};
-  tasksList.forEach(t => {
+  visibleTasks().forEach(t => {
     if (!categories[t.category]) categories[t.category] = [];
     categories[t.category].push(t);
   });
@@ -2046,13 +2423,21 @@ function renderTasks() {
         btn.onclick = () => completeTask(t.id, t.xp, t.name);
         btn.innerText = `${t.name} (+${t.xp} XP)`;
       }
-      
       section.appendChild(btn);
+      if (t.custom) { const del=document.createElement('button'); del.className='danger-btn'; del.style.marginTop='-6px'; del.innerText='🗑️ Remover'; del.onclick=()=>removeCustomTask(t.id); section.appendChild(del); }
     });
     
     div.appendChild(section);
   });
 }
+
+function addCustomTask(){
+  const name=document.getElementById('customTaskName').value.trim(); const xp=Math.max(5,Math.min(100,parseInt(document.getElementById('customTaskXP').value)||20));
+  const category=document.getElementById('customTaskCategory').value; const days=[...document.querySelectorAll('#customTaskDays input:checked')].map(x=>Number(x.value));
+  if(!name||!days.length){showNotification('Informe o nome e pelo menos um dia.','warning');return;}
+  player.customTasks=player.customTasks||[]; player.customTasks.push({id:'custom_'+Date.now(),name,xp,category,days,custom:true}); save(); renderTasks(); showNotification('✅ Tarefa personalizada criada!','success'); document.getElementById('customTaskName').value='';
+}
+function removeCustomTask(id){ if(!confirm('Remover esta tarefa personalizada?'))return; player.customTasks=(player.customTasks||[]).filter(t=>t.id!==id); save(); renderTasks(); }
 
 // ======================
 // CONQUISTAS
@@ -2305,16 +2690,9 @@ function renderWorkoutTracker() {
   const totalWorkoutsEl = document.getElementById('totalWorkouts');
   if (totalWorkoutsEl) totalWorkoutsEl.innerText = player.totalWorkouts;
   
-  // Calcular streak de treinos
-  let workoutStreak = 0;
-  for (let i = player.history.length - 1; i >= 0; i--) {
-    const dayData = player.history[i];
-    if (dayData && dayData.tasks > 0) {
-      workoutStreak++;
-    } else {
-      break;
-    }
-  }
+  // Calcular streak de treinos por dias realmente treinados
+  let workoutStreak = 0; const dates=[...(player.workoutHistory||[])]; if(Object.values(player.workoutCompleted||{}).some(Boolean)) dates.push(localDateKey());
+  dates.sort(); let cursor=localDateKey(); for(let i=dates.length-1;i>=0;i--){ const gap=daysBetweenKeys(dates[i],cursor); if(gap===0||gap===1){workoutStreak++;cursor=dates[i];}else break; }
   
   const streakEl = document.getElementById('workoutStreak');
   if (streakEl) streakEl.innerText = `${workoutStreak} dias`;
@@ -2348,6 +2726,7 @@ function toggleWorkout(type) {
   // Incrementar total de treinos
   if (!player.totalWorkouts) player.totalWorkouts = 0;
   player.totalWorkouts++;
+  gainAttribute('strength', 2); gainAttribute('health', 1); awardCoins(Math.max(2,Math.round(xp/5)));
   
   addXP(xp);
   playSound('workout');
@@ -2399,11 +2778,12 @@ function updateWaterUI() {
 function addWater(amount) {
   player.waterToday += amount;
   player.waterTotalDrunk += amount;
+  player.waterAddsToday=player.waterAddsToday||[]; player.waterAddsToday.push(amount);
   
   if (player.waterToday >= player.waterGoal) {
     const firstTime = player.waterToday - amount < player.waterGoal;
     if (firstTime) {
-      addXP(50);
+      gainAttribute('health',2); awardCoins(10); addXP(50);
       playSound('achievement');
       vibrate(VIBRATE_PATTERNS.success);
       showNotification("💧 Meta de hidratação atingida! +50 XP", 'success');
@@ -2422,6 +2802,8 @@ function addWater(amount) {
   updateWaterUI();
 }
 
+function undoWater(){ const arr=player.waterAddsToday||[]; if(!arr.length){showNotification('Nada para desfazer hoje.','warning');return;} const amount=arr.pop(); player.waterToday=Math.max(0,(player.waterToday||0)-amount); player.waterTotalDrunk=Math.max(0,(player.waterTotalDrunk||0)-amount); save(); updateWaterUI(); showNotification(`↩️ ${amount}ml removidos.`,'info'); }
+
 function updateWaterGoal() {
   const input = document.getElementById('waterGoalInput');
   if (!input) return;
@@ -2438,6 +2820,22 @@ function updateWaterGoal() {
     showNotification("❌ Meta deve estar entre 500ml e 5000ml", 'error');
   }
 }
+
+function renderRPGProgress(){
+ const names={strength:'💪 Força',intelligence:'🧠 Inteligência',health:'❤️ Saúde',discipline:'⚡ Disciplina',balance:'🧘 Equilíbrio',consistency:'🔥 Consistência'}; const g=document.getElementById('attributesGrid'); if(!g)return; g.innerHTML='';
+ Object.entries(names).forEach(([k,n])=>{const v=player.attributes?.[k]||0;g.innerHTML+=`<div class="rpg-attr"><strong>${n}</strong><div>${v} pts</div><div class="mini-bar"><i style="width:${Math.min(100,v)}%"></i></div></div>`});
+ document.getElementById('coinsDisplay').innerText=player.coins||0; document.getElementById('titleDisplay').innerText=getAvatarTitle(); renderRewards();
+}
+function addPersonalReward(){ const name=document.getElementById('rewardName').value.trim(),cost=Math.max(10,parseInt(document.getElementById('rewardCost').value)||100); if(!name)return; player.personalRewards=player.personalRewards||[];player.personalRewards.push({id:Date.now(),name,cost});save();renderRewards();document.getElementById('rewardName').value=''; }
+function renderRewards(){const d=document.getElementById('rewardsList');if(!d)return;d.innerHTML=(player.personalRewards||[]).map(r=>`<div class="mission-card"><div class="mission-head"><strong>🎁 ${r.name}</strong><span>${r.cost} 🪙</span></div><button onclick="redeemReward(${r.id})">Resgatar</button></div>`).join('')||'<p class="small-note">Nenhuma recompensa criada.</p>';}
+function redeemReward(id){const r=(player.personalRewards||[]).find(x=>x.id===id);if(!r)return;if((player.coins||0)<r.cost){showNotification('🪙 Moedas insuficientes.','warning');return;}player.coins-=r.cost;save();renderRPGProgress();showNotification(`🎁 Recompensa liberada: ${r.name}`,'success');}
+function weeklyMissionsData(){return [{id:'tasks25',name:'Completar 25 tarefas',target:25,value:()=>player.history.filter(h=>isThisWeek(h.date)).reduce((a,h)=>a+(h.tasks||0),0)+(player.tasksToday||0),xp:250,coins:50},{id:'water5',name:'Bater meta de água 5 dias',target:5,value:()=>player.waterHistory.filter(h=>isThisWeek(h.date)&&h.amount>=player.waterGoal).length+((player.waterToday>=player.waterGoal)?1:0),xp:200,coins:50},{id:'workout3',name:'Treinar em 3 dias',target:3,value:()=>new Set((player.workoutHistory||[]).filter(isThisWeek).concat(Object.values(player.workoutCompleted||{}).some(Boolean)?[localDateKey()]:[])).size,xp:250,coins:60}];}
+function isThisWeek(date){return date>=currentWeekKey()&&date<=localDateKey();}
+function renderWeeklyMissions(){const week=currentWeekKey(),d=document.getElementById('weeklyMissionList');player.weeklyClaims=player.weeklyClaims||{};d.innerHTML=weeklyMissionsData().map(m=>{const v=Math.min(m.target,m.value()),done=v>=m.target,claimed=player.weeklyClaims[week+'_'+m.id];return `<div class="mission-card"><div class="mission-head"><strong>${done?'✅':'🎯'} ${m.name}</strong><span>${v}/${m.target}</span></div><div class="mini-bar"><i style="width:${v/m.target*100}%"></i></div><p>+${m.xp} XP · +${m.coins} 🪙</p><button ${!done||claimed?'disabled':''} onclick="claimWeekly('${m.id}')">${claimed?'Coletado':'Coletar'}</button></div>`}).join('');}
+function claimWeekly(id){const m=weeklyMissionsData().find(x=>x.id===id),key=currentWeekKey()+'_'+id;if(!m||m.value()<m.target||player.weeklyClaims[key])return;player.weeklyClaims[key]=true;awardCoins(m.coins);gainAttribute('consistency',3);addXP(m.xp);save();renderWeeklyMissions();showNotification('🏆 Missão semanal coletada!','success');}
+function renderStatistics(){const hist=[...player.history,{date:localDateKey(),xp:player.xpToday||0,tasks:player.tasksToday||0}];const totalTasks=hist.reduce((a,h)=>a+(h.tasks||0),0),days=Math.max(1,hist.filter(h=>(h.tasks||0)>0).length);document.getElementById('completionRate').innerText=Math.min(100,Math.round(totalTasks/(days*visibleTasks().length)*100))+'%';const best=hist.reduce((a,b)=>(b.xp||0)>(a.xp||0)?b:a,{xp:0,date:'—'});document.getElementById('bestDayStat').innerText=best.date==='—'?'—':`${best.date} · ${best.xp} XP`;document.getElementById('bestStreakStat').innerText=(player.bestStreak||0)+' dias';const chart=document.getElementById('xpWeekChart');const days7=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const key=localDateKey(d),rec=hist.find(h=>h.date===key);days7.push({key,xp:rec?.xp||0,label:d.toLocaleDateString('pt-BR',{weekday:'short'}).slice(0,3)});}const max=Math.max(1,...days7.map(x=>x.xp));chart.innerHTML=days7.map(x=>`<div class="stats-col"><div class="bar" style="height:${Math.max(2,x.xp/max*130)}px" title="${x.xp} XP"></div><b>${x.label}</b><span>${x.xp}</span></div>`).join('');}
+function exportBackup(){const blob=new Blob([JSON.stringify({app:'XP Life',version:2,data:player},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`xp-life-backup-${localDateKey()}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+function importBackup(event){const f=event.target.files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const obj=JSON.parse(r.result);const data=obj.data||obj;if(!data||typeof data!=='object')throw 0;player=data;save();location.reload();}catch(e){showNotification('❌ Backup inválido.','error')}};r.readAsText(f);}
 
 // ======================
 // HISTÓRICO
@@ -2459,7 +2857,7 @@ function renderHistory() {
     const dayEl = document.createElement('div');
     dayEl.className = day.tasks > 0 ? 'history-day active' : 'history-day';
     
-    const date = new Date(day.date);
+    const date = new Date(String(day.date).length===10 ? day.date + 'T12:00:00' : day.date);
     const dateStr = `${date.getDate()}/${date.getMonth() + 1}`;
     
     dayEl.innerHTML = `
@@ -2487,6 +2885,7 @@ function resetProgress() {
   if (confirm("Tem certeza que deseja resetar todo o progresso? Esta ação não pode ser desfeita!")) {
     try {
       vibrate(VIBRATE_PATTERNS.strong);
+      localStorage.removeItem("disciplinaRPG_v10");
       localStorage.removeItem("disciplinaRPG_v9");
       localStorage.removeItem("disciplinaRPG_v8");
       localStorage.removeItem("disciplinaRPG_v7");
@@ -2502,7 +2901,7 @@ function resetProgress() {
 // ======================
 function save() {
   try {
-    localStorage.setItem("disciplinaRPG_v9", JSON.stringify(player));
+    localStorage.setItem("disciplinaRPG_v10", JSON.stringify(player));
   } catch (e) {
     console.error("Erro ao salvar:", e);
     showNotification("⚠️ Erro ao salvar progresso", 'error');
@@ -2511,8 +2910,8 @@ function save() {
 
 function load() {
   try {
-    let data = localStorage.getItem("disciplinaRPG_v9");
-    
+    let data = localStorage.getItem("disciplinaRPG_v10");
+    if (!data) data = localStorage.getItem("disciplinaRPG_v9");
     if (!data) {
       data = localStorage.getItem("disciplinaRPG_v8");
     }
@@ -2553,6 +2952,22 @@ function load() {
       if (player.waterDaysCompleted === undefined) player.waterDaysCompleted = 0;
       if (player.waterTotalDrunk === undefined) player.waterTotalDrunk = 0;
       if (!player.waterHistory) player.waterHistory = [];
+      if (player.xpToday === undefined) player.xpToday = 0;
+      if (!Array.isArray(player.playedDates)) player.playedDates = [];
+      if (player.playedDates.length === 0 && Array.isArray(player.history)) {
+        player.playedDates = [...new Set(player.history.filter(h => (h.tasks||0)>0 || (h.xp||0)>0).map(h => String(h.date).slice(0,10)))];
+        const oldLast = player.lastDate ? String(player.lastDate).slice(0,10) : null; if (oldLast && !player.playedDates.includes(oldLast)) player.playedDates.push(oldLast);
+      }
+      if (!player.taskStreakMeta) player.taskStreakMeta = {};
+      if (player.coins === undefined) player.coins = 0;
+      if (!player.attributes) player.attributes = { strength:0,intelligence:0,health:0,discipline:0,balance:0,consistency:0 };
+      if (!Array.isArray(player.customTasks)) player.customTasks = [];
+      if (!Array.isArray(player.personalRewards)) player.personalRewards = [];
+      if (!Array.isArray(player.workoutHistory)) player.workoutHistory = [];
+      if (!Array.isArray(player.waterAddsToday)) player.waterAddsToday = [];
+      if (!player.weeklyClaims) player.weeklyClaims = {};
+      // Migração do histórico antigo: total acumulado -> XP aproximado por dia
+      if (player.history && player.history.some((d,i,a)=>i>0 && (d.xp||0) >= (a[i-1].xp||0) && (d.xp||0)>1000)) { let prev=0; player.history=player.history.map(d=>{const total=d.xp||0; const copy={...d,xp:Math.max(0,total-prev)}; prev=total; return copy;}); }
       
       if (player.history && player.history.length > 0) {
         player.history = player.history.map(day => {
@@ -2584,6 +2999,8 @@ try {
   createParticles();
   load();
   loadSoundPreference();
+  updateAppSettingsUI();
+  startReminderEngine();
 } catch (e) {
   console.error("Erro ao inicializar:", e);
   document.body.innerHTML = `
@@ -2600,7 +3017,7 @@ try {
 // Registrar Service Worker para PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('./sw.js')
       .then(registration => {
         console.log('Service Worker registrado com sucesso:', registration.scope);
       })
